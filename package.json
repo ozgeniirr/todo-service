@@ -1,0 +1,45 @@
+{
+  "name": "mail-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "typeorm": "node -r ts-node/register -r tsconfig-paths/register -r dotenv/config ./node_modules/typeorm/cli.js",
+    "migration:generate": "npm run typeorm -- migration:generate ./src/migrations/Init -d ./src/config/data-source.ts",
+    "migration:run": "npm run typeorm -- migration:run -d ./src/config/data-source.ts",
+    "migration:revert": "npm run typeorm -- migration:revert -d ./src/config/data-source.ts",
+    "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/server.ts",
+    "migration:show": "npm run typeorm -- migration:show -d ./src/config/data-source.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/express": "^5.0.3",
+    "bcrypt": "^6.0.0",
+    "bullmq": "^5.58.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "ioredis": "^5.7.0",
+    "nodemailer": "^7.0.5",
+    "nodemailer-otp": "^1.0.8",
+    "pg": "^8.16.3",
+    "redis": "^5.8.2",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.26",
+    "uuid": "^11.1.0",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node12": "^12.1.4",
+    "@types/bcrypt": "^6.0.0",
+    "@types/node": "^24.3.0",
+    "@types/nodemailer": "^7.0.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.2"
+  }
+}

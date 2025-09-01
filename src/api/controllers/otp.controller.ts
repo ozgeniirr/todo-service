@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { sendOtpToEmail, verifyOtp } from "../services/Otp.service";
+import { sendOtpToEmail, verifyOtp } from "../services/otp.service";
 
 export async function sendOtpController(req: Request, res: Response) {
   const { email } = req.body as { email?: string };
@@ -20,7 +20,7 @@ export async function verifyOtpController(req: Request, res: Response) {
   try {
     const result = await verifyOtp(email, otp);
     if (!result.ok) {
-      const code = result.reason === "INVALID" ? 400 : 410; // 410 Gone: süresi geçmiş
+      const code = result.reason === "INVALID" ? 400 : 410; 
       return res.status(code).json({ message: result.reason });
     }
     return res.json({ message: "Doğrulama başarılı" });

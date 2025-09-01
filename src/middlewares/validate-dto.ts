@@ -29,3 +29,16 @@ export class AuthRegisterDTO {
 
 
 }
+
+
+export class AuthLoginDTO {
+    @IsNotEmpty()
+    @IsEmail()
+    email!:string;
+
+    @IsNotEmpty()
+    @MinLength(6)
+    password!:string;
+
+
+}

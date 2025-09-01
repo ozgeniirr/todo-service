@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { User } from '../api/user/User.entity';
+import { User } from '../api/entities/user/User.entity';
 import 'dotenv/config';
 
 export const AppDataSource = new DataSource({

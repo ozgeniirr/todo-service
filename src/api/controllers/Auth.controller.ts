@@ -1,8 +1,7 @@
 import { AppDataSource } from "../../config/data-source";
 import { AuthService } from "../services/Auth.service";
-import { User } from "../user/User.entity";
 import { Request, Response } from "express";
-import { AuthRegisterDTO } from "../../middlewares/validate-dto";
+import { AuthLoginDTO, AuthRegisterDTO } from "../../middlewares/validate-dto";
 import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
 
@@ -34,6 +33,39 @@ export class AuthController{
 
             return res.status(500).json({message:"Sunucu hatası."})
         }
+
+    }
+
+    async loginController(req:Request, res:Response){
+
+        const dto = plainToInstance(AuthLoginDTO, req.body);
+        const errors = await validate(dto);
+
+        if(errors.length>0){
+            return res.status(400).json({message: "Lütfen geçerli veri giriniz.",
+                errors,
+            });
+        }
+
+        const {email, password} = dto;
+
+        try{
+            const lUser = await this.authService.login(email, password);
+            const { tokens } = lUser;
+            return res.status(200).json({message:"Giriş yapıldı.", 
+                user:{ email, tokens}
+            });
+
+
+        }catch(error:any){
+            if(error.message==="USER_NOT_FOUND"){return res.status(404).json({message:"Kullanıcı bulunamadı."})};
+            if(error.message==="NOT_ALLOWED"){return res.status(403).json({message:"Kullanıcı henüz doğrulanmamış."})};
+            if(error.message==="INVALID_PASSWORD"){return res.status(401).json({message:"Şifre hatalı."})};
+
+
+            return res.status(500).json({message:"Sunucu hatası."})
+        }
+
 
 
     }

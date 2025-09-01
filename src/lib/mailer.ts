@@ -41,7 +41,7 @@ export function getTransporter(): AnyTransporter {
 
 export async function sendMailSimple(to: string, subject: string, text: string, html?: string) {
   const info = await getTransporter().sendMail({
-    from: process.env.SMTP_FROM || 'Mail Service <noreply@example.com>',
+    from: process.env.SMTP_FROM || 'Mail Service <canozge001@gmail.com>',
     to,
     subject,
     text,

@@ -57,7 +57,7 @@ export class AuthService{
             throw new Error("NOT_ALLOWED")
         }
 
-        const isPass = bcrypt.compare(password, user.password);
+        const isPass = await bcrypt.compare(password, user.password);
         if(!isPass){
             throw new Error("INVALID_PASS")
         }
@@ -75,6 +75,26 @@ export class AuthService{
         };
 
 
+    }
 
+    async getProfile(userId:string){
+        const user = await this.userRepo.findOne({where: {id:userId},
+        select:[
+            "id",
+            "email",
+            "firstName",
+            "lastName",
+            "age",
+            "isVerified",
+        ]
+        
+        })
+        if(!user){
+            throw new Error("USER_NOT_FOUND")
+        }
+
+        return user;
+
+        
     }
 }

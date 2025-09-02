@@ -15,6 +15,5 @@ export function getRedis(): Redis {
 }
 export async function ensureRedisConnection() {
   const r = getRedis();
-  // ioredis status 'wait' ise bağlan
   if ((r as any).status === 'wait') await r.connect();
 }

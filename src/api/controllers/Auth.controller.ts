@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import { AuthLoginDTO, AuthRegisterDTO } from "../../middlewares/validate-dto";
 import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
+import { logger } from "@/lib/logger";
 
 
 
@@ -51,22 +52,44 @@ export class AuthController{
 
         try{
             const lUser = await this.authService.login(email, password);
-            const { tokens } = lUser;
+            const { user:{id} , tokens } = lUser;
+         
             return res.status(200).json({message:"Giriş yapıldı.", 
-                user:{ email, tokens}
+                user:{user:{id}, email, tokens}
             });
 
 
         }catch(error:any){
             if(error.message==="USER_NOT_FOUND"){return res.status(404).json({message:"Kullanıcı bulunamadı."})};
             if(error.message==="NOT_ALLOWED"){return res.status(403).json({message:"Kullanıcı henüz doğrulanmamış."})};
-            if(error.message==="INVALID_PASSWORD"){return res.status(401).json({message:"Şifre hatalı."})};
+           
+            if(error.message==="INVALID_PASS"){
+            logger.warn('login.failed', {
+                email,
+                reason: error?.message,
+                at: new Date().toISOString(),
+           });
+           return res.status(401).json({message:"Yanlış şifre."})
+        }
+           return res.status(500).json({message:"Sunucu hatası."})
+        }
 
+    }
+
+
+    async getProfileController(req:Request, res:Response){
+        const userId = (req as any ).user!.userId;
+
+        try{
+            const profile = await this.authService.getProfile(userId)
+            return res.status(200).json({message:'Profiliniz: ', profile})
+        }catch(error:any){
+            if(error.message==="USER_NOT_FOUND"){
+                return res.status(404).json({message:'Kullanıcı bulunamadı.'})
+            }
 
             return res.status(500).json({message:"Sunucu hatası."})
         }
-
-
 
     }
 }

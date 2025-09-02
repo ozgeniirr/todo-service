@@ -46,8 +46,10 @@ export async function sendOtpToEmail(email:string){
 
 
 export async function verifyOtp(email:string, providedOtp:string ) {
-    const key = `otp:${email.toLowerCase()}`;
-    const savedHash = await redis.get(key);
+    const emailLower = email.trim().toLowerCase();
+    const key = `otp:${emailLower}`;
+
+    const savedHash= await redis.get(key);
     if(!savedHash) return {ok: false, reason: "EXPIRED_OR_NOT_FOUND"};
 
     const incomingHash = hashOtp(providedOtp);
@@ -55,13 +57,13 @@ export async function verifyOtp(email:string, providedOtp:string ) {
 
 
     const userRepo = AppDataSource.getRepository(User);
-    const user = await userRepo.findOne({where: {email}})
+    const user = await userRepo.findOne({where: {email:emailLower}})
 
     if(!user) return {ok:false, reason:"USER_NOT_FOUND"}
 
     if(!user.isVerified){
-        user.isVerified=true,
-        await userRepo.save(user)
+        user.isVerified=true;
+        await userRepo.save(user);
     }
     
     await redis.del(key);

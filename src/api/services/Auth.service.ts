@@ -3,15 +3,17 @@ import { User } from "../entities/user/User.entity";
 import { sendMailSimple } from "../../lib/mailer";
 import bcrypt from "bcrypt"
 import { error } from "console";
-import { signAccessToken, signRefreshToken } from "@/utils/jwt";
+import { signAccessToken, signRefreshToken } from "../../utils/jwt";
 import { UUID } from "crypto";
+import passport from "passport";
+import { Strategy as LocalStrategy } from "passport-local";
 import { randomUUID } from "crypto";
-import { ensureRedisConnection, getRedis } from "@/lib/redis";
+import { ensureRedisConnection, getRedis } from "../../lib/redis";
+
 
 
 export class AuthService{
     private userRepo = AppDataSource.getRepository(User)
-
 
     async register(email:string, password:string, firstName:string, lastName:string, age:number){
 

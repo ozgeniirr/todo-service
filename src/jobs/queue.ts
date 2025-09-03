@@ -1,4 +1,3 @@
-// src/queues/mail.queue.ts
 import { Queue } from 'bullmq';
 
 export type SendMailJob = {

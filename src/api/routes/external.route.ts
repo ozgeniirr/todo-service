@@ -1,12 +1,20 @@
 import axios from "axios";
 import { Router } from "express";
 
-interface User{
-    id:string,
-    name:string,
-    email:string,
-    age:number
+export interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
+  website: string;
+  address: {
+    street: string; suite: string; city: string; zipcode: string;
+    geo: { lat: string; lng: string };
+  };
+  company: { name: string; catchPhrase: string; bs: string };
 }
+
 
 const router = Router();
 
@@ -19,7 +27,7 @@ router.get('/external-info', async (req, res )=>{
             ...data,
             extraInfo:{
                 source:'JSONPlaceholder',
-                fetched: new Date(). toISOString()
+                fetched: new Date().toISOString()
             },
         };
 

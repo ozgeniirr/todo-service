@@ -23,7 +23,6 @@ function createTransporter(): AnyTransporter {
     return t;
   }
 
-
   const t = nodemailer.createTransport({
     host,
     port,

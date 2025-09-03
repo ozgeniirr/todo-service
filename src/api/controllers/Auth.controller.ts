@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import { AuthLoginDTO, AuthRegisterDTO } from "../../middlewares/validate-dto";
 import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
-import { logger } from "@/lib/logger";
+import { logger } from "../../lib/logger";
 
 
 

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { AuthController } from "../controllers/Auth.controller";
 import { sendOtpController, verifyOtpController } from "../controllers/otp.controller";
-import { authenticateUser } from "@/middlewares/authenticateUser";
+import { authenticateUser } from "../..//middlewares/authenticateUser";
 
 const router = Router();
 const authController = new AuthController();

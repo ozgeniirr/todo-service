@@ -1,10 +1,10 @@
 import crypto from "crypto"
 import NodemailerHelper from "nodemailer-otp"
 import Redis from "ioredis"
-import { mailQueue } from "@/jobs/queue"
-import { logger } from "@/lib/logger"
+import { mailQueue } from "../../jobs/queue"
+import { logger } from "../../lib/logger"
 import { User } from "../entities/user/User.entity"
-import { AppDataSource } from "@/config/data-source"
+import { AppDataSource } from "../../config/data-source"
 
 
 

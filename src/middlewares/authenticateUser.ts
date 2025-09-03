@@ -1,6 +1,6 @@
 import jwt, { decode } from 'jsonwebtoken'
 import { Request, Response, NextFunction } from 'express'
-import { verifyRefreshToken, signAccessToken } from '@/utils/jwt'
+import { verifyRefreshToken, signAccessToken } from '../utils/jwt'
 
 
 export function authenticateUser ( req:Request, res:Response, next:NextFunction){

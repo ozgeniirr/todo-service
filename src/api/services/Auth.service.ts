@@ -2,11 +2,7 @@ import { AppDataSource } from "../../config/data-source";
 import { User } from "../entities/user/User.entity";
 import { sendMailSimple } from "../../lib/mailer";
 import bcrypt from "bcrypt"
-import { error } from "console";
 import { signAccessToken, signRefreshToken } from "../../utils/jwt";
-import { UUID } from "crypto";
-import passport from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
 import { randomUUID } from "crypto";
 import { ensureRedisConnection, getRedis } from "../../lib/redis";
 
@@ -44,40 +40,36 @@ export class AuthService{
         return user;
 
     }
-
-
-
-    async login ( email:string, password:string ){
-
-        const user = await this.userRepo.findOneBy({email})
-
-        if(!user){
-            throw new Error("USER_NOT_FOUND")
+    
+    
+    async login(email: string, password: string) {
+        const user = await this.userRepo.findOneBy({ email });
+        if (!user) {
+    
+            throw new Error("USER_NOT_FOUND");
+  
         }
-
-        if(!user.isVerified){
-            throw new Error("NOT_ALLOWED")
+        if (!user.isVerified) {
+            throw new Error("NOT_ALLOWED");
         }
 
         const isPass = await bcrypt.compare(password, user.password);
-        if(!isPass){
-            throw new Error("INVALID_PASS")
+        if (!isPass) {
+            throw new Error("INVALID_PASS");
         }
-        
+        const userId = String(user.id);
+        const accessToken = signAccessToken(userId, { email: user.email});
         const tokenId = randomUUID();
-        const accessToken  = signAccessToken({ userId: Number(user.id), email: user.email });
-        const refreshToken = signRefreshToken({ userId: Number(user.id), tokenId });
+        const refreshToken = signRefreshToken(userId, tokenId);
         await ensureRedisConnection();
-        await getRedis().set(`refresh:${user.id}:${tokenId}`, '1', 'EX', 60*60*24*7 + 60);
+  
+        await getRedis().set(`refresh:${userId}:${tokenId}`, "1", "EX", 60 * 60 * 24 * 7 + 60);
         return {
-            user: { id: user.id, email: user.email},
-            tokens: { accessToken, refreshToken }
-        
-        
+            user: { id: userId, email: user.email },
+            tokens: { accessToken, refreshToken },
         };
-
-
     }
+
 
     async getProfile(userId:string){
         const user = await this.userRepo.findOne({where: {id:userId},

@@ -1,7 +1,6 @@
-import { AppDataSource } from "../../config/data-source";
 import { AuthService } from "../services/Auth.service";
 import { Request, Response } from "express";
-import { AuthLoginDTO, AuthRegisterDTO } from "../../middlewares/validate-dto";
+import { AuthLoginDTO, AuthRegisterDTO } from "../../DTO/validate-dto";
 import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
 import { logger } from "../../lib/logger";
@@ -37,43 +36,59 @@ export class AuthController{
 
     }
 
-    async loginController(req:Request, res:Response){
 
+    async loginController(req: Request, res: Response) {
         const dto = plainToInstance(AuthLoginDTO, req.body);
         const errors = await validate(dto);
-
-        if(errors.length>0){
-            return res.status(400).json({message: "Lütfen geçerli veri giriniz.",
+        if (errors.length > 0) {
+            return res.status(400).json({
+                message: "Lütfen geçerli veri giriniz.",
                 errors,
             });
         }
-
-        const {email, password} = dto;
-
-        try{
+        
+        const { email, password } = dto;
+        
+        try {
             const lUser = await this.authService.login(email, password);
-            const { user:{id} , tokens } = lUser;
-         
-            return res.status(200).json({message:"Giriş yapıldı.", 
-                user:{user:{id}, email, tokens}
+            const {
+                user: { id, email: userEmail },
+                tokens: { accessToken, refreshToken },
+            } = lUser;
+            
+            return res.status(200).json({
+                message: "Giriş yapıldı.",
+                user: { id, email: userEmail },
+                tokens: { accessToken },
+                rToken: {refreshToken}
+            
             });
-
-
-        }catch(error:any){
-            if(error.message==="USER_NOT_FOUND"){return res.status(404).json({message:"Kullanıcı bulunamadı."})};
-            if(error.message==="NOT_ALLOWED"){return res.status(403).json({message:"Kullanıcı henüz doğrulanmamış."})};
-           
-            if(error.message==="INVALID_PASS"){
-            logger.warn('login.failed', {
+        
+        } catch (error: any) {
+            if (error.message === "USER_NOT_FOUND") {
+                return res.status(404).json({ message: "Kullanıcı bulunamadı." });
+            }
+            if (error.message === "NOT_ALLOWED") {
+                return res.status(403).json({ message: "Kullanıcı henüz doğrulanmamış." });
+            }
+            if (error.message === "INVALID_PASS") {
+                logger.warn("login.failed", {
+                    email,
+                    reason: error?.message,
+                    at: new Date().toISOString(),
+                });
+                return res.status(401).json({ message: "Yanlış şifre." });
+            }
+            logger.warn("login.failed", {
                 email,
                 reason: error?.message,
                 at: new Date().toISOString(),
-           });
-           return res.status(401).json({message:"Yanlış şifre."})
+            });
+            
+            return res.status(500).json({ message: "Sunucu hatası." })
+        
         }
-           return res.status(500).json({message:"Sunucu hatası."})
-        }
-
+    
     }
 
 

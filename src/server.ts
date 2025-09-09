@@ -12,7 +12,7 @@ const server = createServer(application.app);
 AppDataSource.initialize()
   .then(async () => {
     console.log('Database connected');
-    await application.loadServer(); // route’ları mount et
+    await application.loadServer(); 
     server.listen(3000, () => {
       console.log('Server listening on port 3000');
     });

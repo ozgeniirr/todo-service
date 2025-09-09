@@ -8,7 +8,7 @@ import { RouterLabel, RouterPath } from "@/enums/router.enums";
 import { ValidationMiddleware } from "@/middlewares/validationmiddlewares";
 import { AuthLoginDTO, AuthRegisterDTO } from "@/DTO/validate-dto";
 import { Routes } from "@/interfaces/routes.interface";
-import { Request, Response } from "express";
+
 
 export class AuthRoute implements Routes{
     private static instance: AuthRoute

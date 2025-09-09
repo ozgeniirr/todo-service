@@ -1,34 +1,35 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Todo } from "../todos/Todo.entity";
 
 @Entity({ name: "users" })
 export class User {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @Column({ length: 150, unique: true, type: "varchar" })
+  @Column({ length: 150, unique: true })
   email!: string;
 
-  @Column({ type: "varchar" })
+  @Column()
   password!: string;
 
-  @Column({ type: "varchar", length: 100, nullable: true })
-  firstName!: string | null;
+  @Column({ length: 100, nullable: true })
+  firstName?: string;
 
-  @Column({ type: "varchar", length: 100, nullable: true })
-  lastName!: string | null;
+  @Column({ length: 100, nullable: true })
+  lastName?: string;
 
   @Column({ type: "int", nullable: true })
-  age!: number | null;
+  age?: number;
 
-  @Column({ type: "boolean", default: false })
+  @Column({ default: false })
   isVerified!: boolean;
-
-  @Column({ type: "varchar", length: 256, nullable: true })
-  emailVerificationTokenHash!: string | null;
-
-  @Column({ type: "timestamptz", nullable: true })
-  emailVerificationTokenExpires!: Date | null;
 
   @CreateDateColumn({ type: "timestamptz" })
   createdAt!: Date;
+
+  @UpdateDateColumn({ type: "timestamptz" })
+  updatedAt!: Date;
+
+  @OneToMany(() => Todo, (todo) => todo.user)
+  todos!: Todo[];
 }

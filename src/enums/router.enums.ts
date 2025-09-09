@@ -1,8 +1,6 @@
 export enum RouterLabel {
 	Otp = 'otp',
-	PortalUser = 'portalUser',
-	Producer = 'producer',
-	Filters = 'filters',
+	Todo = 'todo',
 	Auth = 'auth',
 	User = 'user',
 }
@@ -12,5 +10,6 @@ export enum RouterPath {
 	SendOtp= 'send-otp',
 	VerifyOtp= 'verify-otp',
 	Login='login',
-	Profile='profile'
+	Profile='profile',
+	Todo='createTodo'
 }

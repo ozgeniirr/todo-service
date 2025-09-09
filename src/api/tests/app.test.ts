@@ -1,6 +1,6 @@
 import { test, expect /*, describe, it */ } from "vitest";
 import request from "supertest";
-import app from "../../app";
+import app from "../../App";
 
 
 

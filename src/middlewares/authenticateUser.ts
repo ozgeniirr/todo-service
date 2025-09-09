@@ -3,6 +3,8 @@ import { verifyAccessToken } from "@/utils/jwt";
 
 //type AuthedRequest = Request & { user?: { userId: string } };
 
+
+
 export function authenticateUser(req:Request, res: Response, next: NextFunction) {
   const auth = req.get("authorization") ?? "";
   if (!auth.startsWith("Bearer ")) {

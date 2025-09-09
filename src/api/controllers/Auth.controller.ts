@@ -29,6 +29,7 @@ export class AuthController{
             return res.status(201).json({message:"Kayıt başarıyla tamamlandı.", user: safeUser});
 
         }catch(error:any){
+            console.error("Register error:", error);  
             if(error.message==="USER_EXISTS"){return res.status(403).json({message:"Bu kullanıcı zaten mevcut."})}
 
             return res.status(500).json({message:"Sunucu hatası."})

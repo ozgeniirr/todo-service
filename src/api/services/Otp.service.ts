@@ -1,82 +1,92 @@
-import crypto from "crypto"
-import NodemailerHelper from "nodemailer-otp"
-import Redis from "ioredis"
-import { mailQueue } from "../../jobs/queue"
-import { logger } from "../../lib/logger"
-import { User } from "../entities/user/User.entity"
-import { AppDataSource } from "../../config/data-source"
 
+import crypto from "crypto";
+import NodemailerHelper from "nodemailer-otp";
+import Redis, { Redis as RedisClient } from "ioredis";
+import { mailQueue } from "../../jobs/queue";
+import { logger } from "../../lib/logger";
+import { User } from "../entities/user/User.entity";
+import { AppDataSource } from "../../config/data-source";
 
+export interface OtpServiceOptions {
+  redisHost?: string;
+  redisPort?: number;
+  smtpUser?: string;
+  smtpPass?: string;
+  ttlSeconds?: number; 
+}
 
-const redis = new Redis({
-    host: process.env.REDIS_HOST || "127.0.0.1",
-    port: Number(process.env.REDIS_PORT || 6379),
+export class OtpService {
+  private readonly redis: RedisClient;
+  private readonly helper: NodemailerHelper;
+  private readonly OTP_TTL_SECONDS: number;
 
-});
+  constructor(opts: OtpServiceOptions = {}) {
+    const {
+      redisHost = process.env.REDIS_HOST || "127.0.0.1",
+      redisPort = Number(process.env.REDIS_PORT || 6379),
+      smtpUser = process.env.SMTP_USER as string,
+      smtpPass = process.env.SMTP_PASS as string,
+      ttlSeconds = 60 * 5,
+    } = opts;
 
+    this.redis = new Redis({ host: redisHost, port: redisPort });
+    this.helper = new NodemailerHelper(smtpUser, smtpPass);
+    this.OTP_TTL_SECONDS = ttlSeconds;
+  }
 
-const helper = new NodemailerHelper(
-    process.env.SMTP_USER as string,
-    process.env.SMTP_PASS as string
-);
-
-
-const OTP_TTL_SECONDS = 60 * 5;
-
-function hashOtp(otp:string) {
+  private hashOtp(otp: string) {
     return crypto.createHash("sha256").update(otp).digest("hex");
-}
+  }
 
-export async function sendOtpToEmail(email:string){
-    const otp = helper.generateOtp(6);
-    const otpHash = hashOtp(otp);
-    const key = `otp:${email.toLowerCase()}`;
+  private keyFor(email: string) {
+    return `otp:${email.trim().toLowerCase()}`;
+  }
 
-    await redis.del(key);
-    await redis.set(key, otpHash, "EX", OTP_TTL_SECONDS);
-
-    await mailQueue.add('send-otp', {
-        to:email,
-        subject: 'Doğrulama kodunuz.',
-        text: `${otp}\nBu kod ${OTP_TTL_SECONDS/60} dakika geçerlidir.`
-    })
-
-    return { ttl: OTP_TTL_SECONDS};
-}
-
-
-export async function verifyOtp(email:string, providedOtp:string ) {
+  async sendOtpToEmail(email: string) {
     const emailLower = email.trim().toLowerCase();
-    const key = `otp:${emailLower}`;
+    const otp = this.helper.generateOtp(6);
+    const otpHash = this.hashOtp(otp);
+    const key = this.keyFor(emailLower);
 
-    const savedHash= await redis.get(key);
-    if(!savedHash) return {ok: false, reason: "EXPIRED_OR_NOT_FOUND"};
+    await this.redis.del(key);
+    await this.redis.set(key, otpHash, "EX", this.OTP_TTL_SECONDS);
 
-    const incomingHash = hashOtp(providedOtp);
-    if(incomingHash !== savedHash) return { ok:false, reason:" INVALID"};
-
-
-    const userRepo = AppDataSource.getRepository(User);
-    const user = await userRepo.findOne({where: {email:emailLower}})
-
-    if(!user) return {ok:false, reason:"USER_NOT_FOUND"}
-
-    if(!user.isVerified){
-        user.isVerified=true;
-        await userRepo.save(user);
-    }
-    
-    await redis.del(key);
-
-
-    logger.info('user.verified', {
-        email,
-        at: new Date().toISOString(),
-
+    await mailQueue.add("send-otp", {
+      to: emailLower,
+      subject: "Doğrulama kodunuz.",
+      text: `${otp}\nBu kod ${this.OTP_TTL_SECONDS / 60} dakika geçerlidir.`,
     });
 
-    return { ok:true,
-    
-     };
-}
+    return { ttl: this.OTP_TTL_SECONDS };
+  }
 
+
+  async verifyOtp(email: string, providedOtp: string) {
+    const emailLower = email.trim().toLowerCase();
+    const key = this.keyFor(emailLower);
+
+    const savedHash = await this.redis.get(key);
+    if (!savedHash) return { ok: false, reason: "EXPIRED_OR_NOT_FOUND" };
+
+    const incomingHash = this.hashOtp(providedOtp);
+    if (incomingHash !== savedHash) return { ok: false, reason: "INVALID" };
+
+    const userRepo = AppDataSource.getRepository(User);
+    const user = await userRepo.findOne({ where: { email: emailLower } });
+    if (!user) return { ok: false, reason: "USER_NOT_FOUND" };
+
+    if (!user.isVerified) {
+      user.isVerified = true;
+      await userRepo.save(user);
+    }
+
+    await this.redis.del(key);
+
+    logger.info("user.verified", {
+      email: emailLower,
+      at: new Date().toISOString(),
+    });
+
+    return { ok: true };
+  }
+}

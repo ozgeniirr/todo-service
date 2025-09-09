@@ -1,18 +1,59 @@
-import express from "express";
+import express, { Express, Request, Response} from 'express';
 import path from "path";
 import helmet from "helmet";
 import cors from "cors";
 import compression from "compression";
 import hpp from "hpp";
-import authRouter from "./api/routes/Auth.routes";
 import i18n from "./config/i18n";
 import type { CorsOptions } from "cors";
 import session from "express-session";
 import externalRoutes from "./api/routes/external.route";
 import passport, { initialize } from "passport";
+import { ExpressProvider } from "./provider/expressProvider";
 
 
 
+
+class App {
+  public readonly app: Express;
+
+  constructor() {
+    this.app = express();
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+
+  }
+
+  public async loadServer(): Promise<void> {
+    const expressProvider = ExpressProvider.fromExpress(this.app); 
+    await expressProvider.mountRoutes();
+  }
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 const app = express();
 
 app.use(i18n.init);
@@ -97,3 +138,4 @@ app.use(
 );
 
 export default app;
+*/

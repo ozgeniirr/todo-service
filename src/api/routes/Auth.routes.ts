@@ -1,17 +1,45 @@
 import { Router } from "express";
 import { AuthController } from "../controllers/Auth.controller";
-import { sendOtpController, verifyOtpController } from "../controllers/otp.controller";
 import { authenticateUser } from "../..//middlewares/authenticateUser";
 import { loadUserEmail } from "@/middlewares/loadUserByEmail";
+import Container from 'typedi'
 import { requireExistingUser } from "@/middlewares/requireExistingUser";
+import { RouterLabel, RouterPath } from "@/enums/router.enums";
+import { ValidationMiddleware } from "@/middlewares/validationmiddlewares";
+import { AuthLoginDTO, AuthRegisterDTO } from "@/DTO/validate-dto";
+import { Routes } from "@/interfaces/routes.interface";
+import { Request, Response } from "express";
 
-const router = Router();
-const authController = new AuthController();
+export class AuthRoute implements Routes{
+    private static instance: AuthRoute
+    private path = "/";
+    public label = RouterLabel.Auth
+    public router: Router
+    private authRoute : AuthController
 
-router.post("/register", authController.registerController.bind(authController));
-router.post("/send-otp", loadUserEmail, requireExistingUser, sendOtpController);
-router.post("/verify-otp", loadUserEmail, requireExistingUser, verifyOtpController);
-router.post("/login", authController.loginController.bind(authController));
-router.get("/profile",  authenticateUser, authController.getProfileController.bind(authController))
+    constructor(){
+        this.router = Router()
+		this.authRoute = new AuthController()
+        this.initializeRoutes()
 
-export default router;
+    }
+
+    public static triggerUser(): AuthRoute{
+        if(!AuthRoute.instance){
+            AuthRoute.instance = new AuthRoute()
+        }
+
+        return AuthRoute.instance
+    }
+
+    private initializeRoutes(){
+        
+        this.router.post(`${this.path}${RouterPath.RegisterEndpoint}`,ValidationMiddleware(AuthRegisterDTO), this.authRoute.registerController.bind(this.authRoute))
+        this.router.post(`${this.path}${RouterPath.Login}`, ValidationMiddleware(AuthLoginDTO), this.authRoute.loginController.bind(this.authRoute))
+        this.router.get(`${this.path}${RouterPath.Profile}`, authenticateUser, this.authRoute.getProfileController.bind(this.authRoute))
+
+             
+    }
+}
+
+

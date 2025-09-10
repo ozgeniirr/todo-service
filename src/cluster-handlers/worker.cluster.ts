@@ -3,6 +3,7 @@ import { BaseClusterHandler } from './base.cluster'
 
 export class WorkerClusterHandler extends BaseClusterHandler {
 	public async handle(): Promise<void> {
-		await App.loadServer()
+		const app = new App();
+		app.loadServer();
 	}
 }

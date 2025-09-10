@@ -11,5 +11,8 @@ export enum RouterPath {
 	VerifyOtp= 'verify-otp',
 	Login='login',
 	Profile='profile',
-	Todo='createTodo'
+	Todo='createTodo',
+	UpdateTodo='update',
+	DeleteTodo='delete',
+	GetTodo='getTodo',
 }

@@ -14,3 +14,34 @@
 {"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T14:11:07.588Z"}
 {"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T14:11:07.644Z"}
 {"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T14:11:07.645Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-11T14:40:55.085Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T14:40:55.085Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T14:40:55.152Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T14:40:55.154Z"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-11T14:41:15.231Z","url":"/api/v1/auth/login"}
+{"at":"2025-09-11T14:41:15.372Z","email":"bkaraca459@gmail.com","level":"warn","message":"login.failed","reason":"INVALID_PASS","timestamp":"2025-09-11T14:41:15.372Z"}
+{"durationMs":142.7,"level":"info","message":"HTTP OUT","method":"POST","statusCode":401,"timestamp":"2025-09-11T14:41:15.373Z","url":"/api/v1/auth/login"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-11T14:41:24.093Z","url":"/api/v1/auth/login"}
+{"durationMs":130.9,"level":"info","message":"HTTP OUT","method":"POST","statusCode":200,"timestamp":"2025-09-11T14:41:24.224Z","url":"/api/v1/auth/login"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"GET","timestamp":"2025-09-11T14:41:38.730Z","url":"/api/v1/auth/profile"}
+{"durationMs":14.5,"level":"info","message":"HTTP OUT","method":"GET","statusCode":200,"timestamp":"2025-09-11T14:41:38.744Z","url":"/api/v1/auth/profile"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-11T14:46:43.430Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T14:46:43.431Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T14:46:43.484Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T14:46:43.485Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-11T14:46:44.927Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T14:46:44.927Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T14:46:44.983Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T14:46:44.983Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-11T14:46:58.920Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T14:46:58.920Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T14:46:58.983Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T14:46:58.984Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-11T14:47:00.059Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T14:47:00.059Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T14:47:00.113Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T14:47:00.114Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-11T14:47:16.447Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T14:47:16.447Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T14:47:16.502Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T14:47:16.503Z"}

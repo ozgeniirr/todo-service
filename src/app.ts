@@ -10,6 +10,8 @@ import session from "express-session";
 import externalRoutes from "./api/routes/external.route";
 import passport, { initialize } from "passport";
 import { ExpressProvider } from "./provider/expressProvider";
+import { requestLogger } from "@/middlewares/request.logger"
+
 
 
 
@@ -21,6 +23,7 @@ class App {
     this.app = express();
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(requestLogger)
 
   }
 

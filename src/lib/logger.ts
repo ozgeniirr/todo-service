@@ -3,8 +3,11 @@ const { createLogger, format, transports } = winston
 
 class CustomLogger {
   private _logger!: winston.Logger
+  private _initialized = false
 
   public initialization(): void {
+    if (this._initialized) return
+        this._initialized = true    
     try {
       this._logger = createLogger({
         level: 'info',

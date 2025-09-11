@@ -1,0 +1,16 @@
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-11T13:07:19.643Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T13:07:19.644Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T13:07:19.704Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T13:07:19.706Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-11T14:10:45.534Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T14:10:45.534Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T14:10:45.607Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T14:10:45.609Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-11T14:10:55.786Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T14:10:55.786Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T14:10:55.851Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T14:10:55.852Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-11T14:11:07.587Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-11T14:11:07.588Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-11T14:11:07.644Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-11T14:11:07.645Z"}

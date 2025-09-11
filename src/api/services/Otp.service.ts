@@ -64,6 +64,7 @@ export class OtpService {
   async verifyOtp(email: string, providedOtp: string) {
     const emailLower = email.trim().toLowerCase();
     const key = this.keyFor(emailLower);
+  
 
     const savedHash = await this.redis.get(key);
     if (!savedHash) return { ok: false, reason: "EXPIRED_OR_NOT_FOUND" };
@@ -82,7 +83,7 @@ export class OtpService {
 
     await this.redis.del(key);
 
-    logger.info("user.verified", {
+    logger.client.info("user.verified", {
       email: emailLower,
       at: new Date().toISOString(),
     });

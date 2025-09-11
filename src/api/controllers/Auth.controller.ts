@@ -73,14 +73,14 @@ export class AuthController{
                 return res.status(403).json({ message: "Kullanıcı henüz doğrulanmamış." });
             }
             if (error.message === "INVALID_PASS") {
-                logger.warn("login.failed", {
+                logger.client.warn("login.failed", {
                     email,
                     reason: error?.message,
                     at: new Date().toISOString(),
                 });
                 return res.status(401).json({ message: "Yanlış şifre." });
             }
-            logger.warn("login.failed", {
+            logger.client.warn("login.failed", {
                 email,
                 reason: error?.message,
                 at: new Date().toISOString(),

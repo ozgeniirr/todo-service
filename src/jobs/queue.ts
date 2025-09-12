@@ -1,18 +1,18 @@
-import { Queue } from 'bullmq';
+import { Queue } from 'bullmq'
 
 export type SendMailJob = {
-  to: string;
-  subject: string;
-  text?: string;
-  html?: string;
-};
+  to: string
+  subject: string
+  text?: string
+  html?: string
+}
 
 const connection = {
   host: process.env.REDIS_HOST || '127.0.0.1',
   port: Number(process.env.REDIS_PORT || 6379),
   maxRetriesPerRequest: null as null,
   enableReadyCheck: true,
-};
+}
 
 export const mailQueue = new Queue<SendMailJob>('mail', {
   connection,
@@ -22,4 +22,8 @@ export const mailQueue = new Queue<SendMailJob>('mail', {
     removeOnComplete: 100,
     removeOnFail: 100,
   },
-});
+})
+
+export function enqueueMail(job: SendMailJob) {
+  return mailQueue.add('send', job)
+}

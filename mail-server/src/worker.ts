@@ -1,8 +1,7 @@
-
 import 'dotenv/config';
 import { Worker, QueueEvents } from 'bullmq';
-import { sendMailSimple } from '@/lib/mailer';
-import type { SendMailJob } from '@/jobs/queue';
+import { sendMailSimple } from './lib/mailer';
+import type { SendMailJob } from '../../src/jobs/queue';
 
 const connection = {
   host: process.env.REDIS_HOST || '127.0.0.1',

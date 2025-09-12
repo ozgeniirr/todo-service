@@ -1,11 +1,13 @@
-
 import crypto from "crypto";
-import NodemailerHelper from "nodemailer-otp";
 import Redis, { Redis as RedisClient } from "ioredis";
 import { mailQueue } from "../../jobs/queue";
 import { logger } from "../../lib/logger";
 import { User } from "../entities/user/User.entity";
 import { AppDataSource } from "../../config/data-source";
+import { enqueueMail } from '../../jobs/queue' 
+import NodemailerHelper from "nodemailer-otp";
+
+
 
 export interface OtpServiceOptions {
   redisHost?: string;

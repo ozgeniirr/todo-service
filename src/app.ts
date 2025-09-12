@@ -4,7 +4,6 @@ import helmet from "helmet";
 import cors from "cors";
 import compression from "compression";
 import hpp from "hpp";
-import i18n from "./config/i18n";
 import type { CorsOptions } from "cors";
 import session from "express-session";
 import externalRoutes from "./api/routes/external.route";

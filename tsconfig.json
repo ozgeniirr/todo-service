@@ -17,5 +17,9 @@
     "paths": {
       "@/*": ["*"]
     }
-  }
+
+    
+  },
+
+    "exclude": ["node_modules", "mail-server"]  
 }

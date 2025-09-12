@@ -17,3 +17,4 @@ export async function ensureRedisConnection() {
   const r = getRedis();
   if ((r as any).status === 'wait') await r.connect();
 }
+

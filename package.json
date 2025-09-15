@@ -88,8 +88,6 @@
 
     "redis": "^5.8.2",
 
-    "reflect-metadata": "^0.2.2",
-
     "socket.io": "^4.8.1",
 
     "typedi": "^0.10.0",
@@ -126,17 +124,19 @@
 
     "@types/mocha": "^10.0.10",
 
-    "@types/node": "^24.3.1",
+    "@types/node": "^24.4.0",
 
     "@types/nodemailer": "^7.0.1",
 
     "@types/passport-local": "^1.0.38",
 
-    "@types/socket.io": "^3.0.1",
-
     "@types/supertest": "^6.0.3",
 
     "@types/winston": "^2.4.4",
+
+    "reflect-metadata": "^0.2.2",
+
+    "socket.io-client": "^4.8.1",
 
     "supertest": "^7.1.4",
 

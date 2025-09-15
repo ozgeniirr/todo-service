@@ -1,11 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
-import { verifyAccessToken } from "@/utils/jwt"; 
+import { verifyAccessToken } from "@/utils/jwt";
 
-//type AuthedRequest = Request & { user?: { userId: string } };
-
-
-
-export function authenticateUser(req:Request, res: Response, next: NextFunction) {
+export function authenticateUser(req: Request, res: Response, next: NextFunction) {
   const auth = req.get("authorization") ?? "";
   if (!auth.startsWith("Bearer ")) {
     return res.status(401).json({ message: "Missing or invalid Authorization header" });
@@ -17,13 +13,13 @@ export function authenticateUser(req:Request, res: Response, next: NextFunction)
   }
 
   try {
-    const payload = verifyAccessToken(token);
-    const userId = (payload as any).sub ?? (payload as any).userId;
+    const { userId, email, role } = verifyAccessToken(token);
+
     if (!userId) {
       return res.status(401).json({ message: "Invalid access token payload" });
     }
 
-    req.user = { userId: String(userId) };
+    (req as any).user = { userId: String(userId), email, role };
     return next();
   } catch {
     return res.status(401).json({ message: "Invalid or expired access token" });

@@ -15,22 +15,22 @@
 ---
 
 ## Gün 0 — Envanter & Temizlik
-- [ ] Bağımlılıklar gözden geçirildi (Node, TS, TypeORM, pg, redis, socket.io).
+- [x] Bağımlılıklar gözden geçirildi (Node, TS, TypeORM, pg, redis, socket.io).
 - [ ] `.env.example` güncellendi (`DATABASE_URL`/db parametreleri, `REDIS_URL`, `JWT_SECRET`).
-- [ ] NPM script’leri çalışır: `dev`, `build`, `start`, `test`.
-- [ ] TypeORM log gürültüsü azaltıldı (`logging: ["error"]`).
-- [ ] Sunucu temiz log ile açılıyor; DB/Redis bağlantıları OK.
+- [x] NPM script’leri çalışır: `dev`, `build`, `start`, `test`.
+- [x] TypeORM log gürültüsü azaltıldı (`logging: ["error"]`).
+- [x] Sunucu temiz log ile açılıyor; DB/Redis bağlantıları OK.
 
 **Kabul Kriteri:** `npm run dev` temiz; DB/Redis bağlanıyor, hata yok.
 
 ---
 
 ## Gün 1 — Şema & Migration’lar
-- [ ] **Users**: `role` eklendi (`'USER' | 'ADMIN'`, default `'USER'`).
-- [ ] **Todos**: `createdAt`, `updatedAt`, `userId` (FK) net.
-- [ ] **Index**: `(userId, createdAt)` (liste performansı).
-- [ ] (Opsiyonel) **Unique**: `(userId, title)` (title tabanlı işlemler için).
-- [ ] Migration komutları hazır ve **up/down** test edildi.
+- [x] **Users**: `role` eklendi (`'USER' | 'ADMIN'`, default `'USER'`).
+- [x] **Todos**: `createdAt`, `updatedAt`, `userId` (FK) net.
+- [x] **Index**: `(userId, createdAt)` (liste performansı).
+- [x] (Opsiyonel) **Unique**: `(userId, title)` (title tabanlı işlemler için).
+- [x] Migration komutları hazır ve **up/down** test edildi.
 
 **Kabul Kriteri:** Taze DB’de migration’lar sorunsuz çalışıyor.
 

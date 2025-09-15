@@ -1,32 +1,44 @@
-import 'dotenv/config';
-import { Worker, QueueEvents } from 'bullmq';
-import { sendMailSimple } from './lib/mailer';
-import type { SendMailJob } from '../../src/jobs/queue';
+import 'dotenv/config'
+import { Worker, QueueEvents } from 'bullmq'
+import { sendMailSimple } from './lib/mailer'
+import { redisConnection } from './redis/redis'
+import { logger } from './logger/logger'
+import type { SendMailJob } from './types'
+import { verifyTransport } from './lib/mailer'
 
-const connection = {
-  host: process.env.REDIS_HOST || '127.0.0.1',
-  port: Number(process.env.REDIS_PORT || 6379),
-  maxRetriesPerRequest: null as null, 
-  enableReadyCheck: true,
-};
 
-(async () => {
+;(async () => {
+    await verifyTransport()    
   const worker = new Worker<SendMailJob>(
     'mail',
     async (job) => {
-      const { to, subject, text, html } = job.data;
-      const info = await sendMailSimple(to, subject, text || '', html);
-      console.log('Mail gönderildi:', to, 'messageId:', (info as any).messageId);
-      return { deliveredTo: to };
-    },
-    { connection, concurrency: 5 }
-  );
+      const { to, subject, text, html } = job.data
+      const info = await sendMailSimple(to, subject, text || '', html)
+      logger.info('mail.sent', {
+        to,
+        messageId: (info as any).messageId,
+        response:  (info as any).response,  
+        accepted:  (info as any).accepted,   
+        rejected:  (info as any).rejected,  
+        envelope:  (info as any).envelope,
+      })
+          return { deliveredTo: to }
+},
+    { connection: redisConnection, concurrency: 5 }
+  )
 
-  const events = new QueueEvents('mail', { connection });
+  const events = new QueueEvents('mail', { connection: redisConnection })
+  events.on('completed', ({ jobId }) => logger.info('job.completed', { jobId }))
+  events.on('failed', ({ jobId, failedReason }) => logger.error('job.failed', { jobId, failedReason }))
+  worker.on('error', (err) => logger.error('worker.error', { message: err.message }))
 
-  events.on('completed', ({ jobId }) => console.log('Job completed:', jobId));
-  events.on('failed', ({ jobId, failedReason }) => console.error('Job failed:', jobId, failedReason));
+  logger.info('Mail worker started.')
 
-  worker.on('error', (err) => console.error('Worker error:', err));
-  console.log('📨 Mail worker started.');
-})();
+  
+
+
+
+})()
+
+
+

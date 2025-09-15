@@ -5,6 +5,7 @@ import { signAccessToken, signRefreshToken } from "../../utils/jwt";
 import { randomUUID } from "crypto";
 import { ensureRedisConnection, getRedis } from "../../lib/redis";
 import { enqueueMail } from "@/jobs/queue";
+import { Role } from "@/types/role";
 
 
 
@@ -41,7 +42,7 @@ export class AuthService{
     }
     
     
-    async login(email: string, password: string) {
+    async login(email: string, password: string,) {
         const user = await this.userRepo.findOneBy({ email });
         if (!user) {
     
@@ -57,14 +58,14 @@ export class AuthService{
             throw new Error("INVALID_PASS");
         }
         const userId = String(user.id);
-        const accessToken = signAccessToken(userId, { email: user.email});
+        const accessToken = signAccessToken(userId, { email: user.email, role: user.role as Role}); 
         const tokenId = randomUUID();
         const refreshToken = signRefreshToken(userId, tokenId);
         await ensureRedisConnection();
   
         await getRedis().set(`refresh:${userId}:${tokenId}`, "1", "EX", 60 * 60 * 24 * 7 + 60);
         return {
-            user: { id: userId, email: user.email },
+            user: { id: userId, email: user.email, role: user.role },
             tokens: { accessToken, refreshToken },
         };
     }

@@ -3,6 +3,8 @@ import { TodoController } from "../controllers/Todo.controller";
 import { RouterLabel, RouterPath } from "@/enums/router.enums";
 import { Routes } from "@/interfaces/routes.interface";
 import { authenticateUser } from "@/middlewares/authenticateUser";
+import { authorizeRole } from "@/middlewares/authRole";
+import { Role } from "@/types/role";
 
 export class TodoRoute implements Routes{
     private static instance :TodoRoute
@@ -27,10 +29,10 @@ export class TodoRoute implements Routes{
     }
 
     private initializeRoutes(){
-        this.router.post(`${this.path}${RouterPath.Todo}`,authenticateUser, this.todoRoute.createTodoController.bind(this.todoRoute));
-        this.router.patch(`${this.path}${RouterPath.UpdateTodo}`, authenticateUser, this.todoRoute.updateCompletedController.bind(this.todoRoute));
-        this.router.delete(`${this.path}${RouterPath.DeleteTodo}`, authenticateUser, this.todoRoute.deleteTodo.bind(this.todoRoute));
-        this.router.get(`${this.path}${RouterPath.GetTodo}`, authenticateUser, this.todoRoute.getTodosCont.bind(this.todoRoute));
+        this.router.post(`${this.path}${RouterPath.Todo}`, authenticateUser,authorizeRole([Role.ADMIN]), this.todoRoute.createTodoController.bind(this.todoRoute));
+        this.router.patch(`${this.path}${RouterPath.UpdateTodo}`, authenticateUser, authorizeRole([Role.ADMIN]),  this.todoRoute.updateCompletedController.bind(this.todoRoute));
+        this.router.delete(`${this.path}${RouterPath.DeleteTodo}`,authenticateUser, authorizeRole([Role.ADMIN]),  this.todoRoute.deleteTodo.bind(this.todoRoute));
+        this.router.get(`${this.path}${RouterPath.GetTodo}`, authenticateUser,  this.todoRoute.getTodosCont.bind(this.todoRoute));
 
     }
 

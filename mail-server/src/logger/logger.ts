@@ -1,12 +1,16 @@
 import winston from "winston";
 
-const logger = winston.createLogger({
-  level: "info",
+export const logger = winston.createLogger({
+  level: 'info',
   format: winston.format.combine(
     winston.format.colorize({ all: true }),
     winston.format.timestamp(),
-    winston.format.printf(({ timestamp, level, message }) => {
-      return `${timestamp} ${level}: ${message}`;
+    winston.format.metadata({ fillExcept: ['message', 'level', 'timestamp'] }),
+    winston.format.printf((info) => {
+      const meta = info.metadata && Object.keys(info.metadata).length
+        ? ' ' + JSON.stringify(info.metadata)
+        : ''
+      return `${info.timestamp} ${info.level}: ${info.message}${meta}`
     })
   ),
   transports: [
@@ -23,11 +27,8 @@ const logger = winston.createLogger({
       filename: "logs/email-server-warn.log",
       level: "warn",
     }),
-    new winston.transports.File({
-      filename: "logs/email-server-debug.log",
-      level: "debug",
-    }),
+
   ],
 });
 
-export const client = logger;
+

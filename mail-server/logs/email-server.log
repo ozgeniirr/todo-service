@@ -1,0 +1,59 @@
+2025-09-15T07:19:34.256Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T08:16:20.473Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T08:17:14.905Z [32minfo[39m: [32mmail.sent[39m
+2025-09-15T08:17:14.907Z [32minfo[39m: [32mjob.completed[39m
+2025-09-15T08:17:50.143Z [32minfo[39m: [32mmail.sent[39m
+2025-09-15T08:17:50.144Z [32minfo[39m: [32mjob.completed[39m
+2025-09-15T08:24:41.338Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T08:27:42.936Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T08:27:42.938Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T08:28:47.169Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T08:28:47.171Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T08:28:57.676Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T08:28:57.679Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T08:29:53.441Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T08:29:53.443Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T08:30:00.705Z [32minfo[39m: [32mmail.sent[39m
+2025-09-15T08:30:00.706Z [32minfo[39m: [32mjob.completed[39m
+2025-09-15T08:30:42.623Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T08:30:42.627Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T08:30:50.211Z [32minfo[39m: [32mmail.sent[39m
+2025-09-15T08:30:50.212Z [32minfo[39m: [32mjob.completed[39m
+2025-09-15T08:36:52.798Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T08:36:52.801Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T08:37:01.279Z [32minfo[39m: [32mmail.sent[39m
+2025-09-15T08:37:01.280Z [32minfo[39m: [32mjob.completed[39m
+2025-09-15T08:37:22.366Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T08:37:22.368Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T08:37:25.591Z [32minfo[39m: [32mmail.sent[39m
+2025-09-15T08:37:25.592Z [32minfo[39m: [32mjob.completed[39m
+2025-09-15T09:47:16.731Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T09:47:16.733Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T09:47:26.182Z [32minfo[39m: [32mmail.sent[39m
+2025-09-15T09:47:26.184Z [32minfo[39m: [32mjob.completed[39m
+2025-09-15T09:49:10.850Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T09:49:10.852Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T09:50:43.536Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T09:50:43.538Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T09:50:47.249Z [32minfo[39m: [32mmail.sent[39m
+2025-09-15T09:50:47.250Z [32minfo[39m: [32mjob.completed[39m
+2025-09-15T09:51:51.840Z [32minfo[39m: [32msmtp.verify.ok[39m
+2025-09-15T09:51:51.842Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T09:51:56.076Z [32minfo[39m: [32mmail.sent[39m
+2025-09-15T09:51:56.077Z [32minfo[39m: [32mjob.completed[39m
+2025-09-15T09:58:31.717Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":false}
+2025-09-15T09:58:31.720Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T09:58:34.811Z [32minfo[39m: [32mmail.sent[39m {"to":"canozge001@gmail.com","messageId":"<22ebd36e-960a-2332-52d5-84bc224d60b4@localhost>","envelope":{"from":false,"to":["canozge001@gmail.com"]}}
+2025-09-15T09:58:34.812Z [32minfo[39m: [32mjob.completed[39m {"jobId":"46"}
+2025-09-15T11:10:48.950Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-15T11:10:48.953Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T11:10:59.555Z [32minfo[39m: [32mmail.sent[39m {"to":"canozge001@gmail.com","messageId":"<0241139f-0618-30c4-8119-90a82c1ad606@gmail.com>","response":"250 2.0.0 OK  1757934659 ffacd0b85a97d-3ead559dfadsm3608767f8f.36 - gsmtp","accepted":["canozge001@gmail.com"],"rejected":[],"envelope":{"from":"canozge001@gmail.com","to":["canozge001@gmail.com"]}}
+2025-09-15T11:10:59.558Z [32minfo[39m: [32mjob.completed[39m {"jobId":"47"}
+2025-09-15T12:22:56.349Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-15T12:22:56.356Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T12:39:46.337Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-15T12:39:46.343Z [32minfo[39m: [32m📨 Mail worker started.[39m
+2025-09-15T13:44:43.311Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-15T13:44:43.314Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-15T14:11:59.902Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-15T14:11:59.905Z [32minfo[39m: [32mMail worker started.[39m

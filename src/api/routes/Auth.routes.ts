@@ -8,6 +8,7 @@ import { RouterLabel, RouterPath } from "@/enums/router.enums";
 import { ValidationMiddleware } from "@/middlewares/validationmiddlewares";
 import { AuthLoginDTO, AuthRegisterDTO } from "@/DTO/validate-dto";
 import { Routes } from "@/interfaces/routes.interface";
+import { authorizeRole } from "@/middlewares/authRole";
 
 
 export class AuthRoute implements Routes{
@@ -34,9 +35,9 @@ export class AuthRoute implements Routes{
 
     private initializeRoutes(){
         
-        this.router.post(`${this.path}${RouterPath.RegisterEndpoint}`,ValidationMiddleware(AuthRegisterDTO), this.authRoute.registerController.bind(this.authRoute))
+        this.router.post(`${this.path}${RouterPath.RegisterEndpoint}`,  ValidationMiddleware(AuthRegisterDTO), this.authRoute.registerController.bind(this.authRoute))
         this.router.post(`${this.path}${RouterPath.Login}`, ValidationMiddleware(AuthLoginDTO), this.authRoute.loginController.bind(this.authRoute))
-        this.router.get(`${this.path}${RouterPath.Profile}`, authenticateUser, this.authRoute.getProfileController.bind(this.authRoute))
+        this.router.get(`${this.path}${RouterPath.Profile}`,authenticateUser, this.authRoute.getProfileController.bind(this.authRoute))
 
              
     }

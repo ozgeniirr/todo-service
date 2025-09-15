@@ -53,13 +53,13 @@ export class AuthController{
         try {
             const lUser = await this.authService.login(email, password);
             const {
-                user: { id, email: userEmail },
+                user: { id, email: userEmail, role },
                 tokens: { accessToken, refreshToken },
             } = lUser;
             
             return res.status(200).json({
                 message: "Giriş yapıldı.",
-                user: { id, email: userEmail },
+                user: { id, email: userEmail,role},
                 tokens: { accessToken },
                 rToken: {refreshToken}
             

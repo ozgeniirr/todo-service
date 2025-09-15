@@ -9,6 +9,18 @@ import { verifyTransport } from './lib/mailer'
 
 ;(async () => {
     await verifyTransport()    
+    const requiredVars = [
+      "MAIL_HOST",
+      "USER_MAIL_AUTH",
+      "USER_MAIL_PASSWORD",
+      "API_REDIS_URL",
+    ];
+
+    const missing = requiredVars.filter((key) => !process.env[key]);
+    if (missing.length > 0) {
+      logger.error(`Missing environment variables: ${missing.join(", ")}`);
+      process.exit(1);
+}
   const worker = new Worker<SendMailJob>(
     'mail',
     async (job) => {

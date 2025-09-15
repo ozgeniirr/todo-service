@@ -11,6 +11,20 @@ dotenv.config()
 logger.initialization()
 logger.client.info('Boot: starting app')
 
+const requiredVars = [
+  "MAIL_HOST",
+  "USER_MAIL_AUTH",
+  "USER_MAIL_PASSWORD",
+  "API_REDIS_URL",
+];
+
+const missing = requiredVars.filter((key) => !process.env[key]);
+
+if (missing.length > 0) {
+  logger.client.error(`Missing environment variables: ${missing.join(", ")}`);
+  process.exit(1);
+}
+
 const application = new App()
 const server = createServer(application.app)
 

@@ -1,5 +1,5 @@
 import express, { Express, Request, Response} from 'express';
-import path from "path";
+/*import path from "path";
 import helmet from "helmet";
 import cors from "cors";
 import compression from "compression";
@@ -7,7 +7,7 @@ import hpp from "hpp";
 import type { CorsOptions } from "cors";
 import session from "express-session";
 import externalRoutes from "./api/routes/external.route";
-import passport, { initialize } from "passport";
+import passport, { initialize } from "passport";*/
 import { ExpressProvider } from "./provider/expressProvider";
 import { requestLogger } from "@/middlewares/request.logger"
 

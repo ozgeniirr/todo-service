@@ -6,7 +6,7 @@ import Container from 'typedi'
 import { requireExistingUser } from "@/middlewares/requireExistingUser";
 import { RouterLabel, RouterPath } from "@/enums/router.enums";
 import { ValidationMiddleware } from "@/middlewares/validationmiddlewares";
-import { AuthLoginDTO, AuthRegisterDTO } from "@/DTO/validate-dto";
+import { AuthLoginDTO, AuthRegisterDTO } from "@/DTO/Auth-dto";
 import { Routes } from "@/interfaces/routes.interface";
 import { authorizeRole } from "@/middlewares/authRole";
 

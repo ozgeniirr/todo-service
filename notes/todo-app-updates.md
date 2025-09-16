@@ -37,9 +37,9 @@
 ---
 
 ## Gün 2 — Hata Yapısı & Validasyon (Zemin)
-- [ ] **Global error handler**: `AppError(status, code)` + tek middleware; standart JSON hata.
-- [ ] **Validasyon**: Zod/class-validator ile **body/params/query** şemaları (create/update/delete).
-- [ ] **DTO’lar**: Yanıt tipleri net (örn. `TodoDTO = { id, userId, title, completed }`).
+- [x] **Global error handler**: `AppError(status, code)` + tek middleware; standart JSON hata.
+- [x] **Validasyon**: Zod/class-validator ile **body/params/query** şemaları (create/update/delete).
+- [x] **DTO’lar**: Yanıt tipleri net (örn. `TodoDTO = { id, userId, title, completed }`).
 - [ ] **REST düzeltmeleri planı**: Todo uçlarını **id tabanlı** hale getirme (Gün 4’te).
 
 **Kabul Kriteri:** Geçersiz isteklerde 400/422 standart hata formatı dönüyor.

@@ -7,6 +7,7 @@ import { loadUserEmail } from "@/middlewares/loadUserByEmail";
 
 
 
+
 export class OtpRoute implements Routes{
     private static instance : OtpRoute
     private path = "/";
@@ -29,7 +30,7 @@ export class OtpRoute implements Routes{
     }
 
     private initializeRoutes(){
-        this.router.post(`${this.path}${RouterPath.SendOtp}`,loadUserEmail,requireExistingUser, this.otpRoute.sendOtp.bind(OtpRoute))
+        this.router.post(`${this.path}${RouterPath.SendOtp}`,loadUserEmail,requireExistingUser,  this.otpRoute.sendOtp.bind(OtpRoute))
         this.router.post(`${this.path}${RouterPath.VerifyOtp}`, loadUserEmail, requireExistingUser, this.otpRoute.verifyOtp.bind(OtpRoute))
     }
 }

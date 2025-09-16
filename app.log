@@ -220,3 +220,102 @@
 {"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-15T14:16:10.979Z"}
 {"ip":"::1","level":"info","message":"HTTP IN","method":"GET","timestamp":"2025-09-15T14:16:16.843Z","url":"/api/v1/todo/getTodo"}
 {"durationMs":15,"level":"info","message":"HTTP OUT","method":"GET","statusCode":200,"timestamp":"2025-09-15T14:16:16.857Z","url":"/api/v1/todo/getTodo"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-16T07:19:02.899Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-16T07:19:02.899Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-16T07:19:03.001Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-16T07:19:03.003Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-16T12:04:10.079Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-16T12:04:10.080Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-16T12:04:10.162Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-16T12:04:10.163Z"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"GET","timestamp":"2025-09-16T12:04:26.725Z","url":"/api/v1/todo/getTodo"}
+{"durationMs":6,"level":"info","message":"HTTP OUT","method":"GET","statusCode":401,"timestamp":"2025-09-16T12:04:26.730Z","url":"/api/v1/todo/getTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T12:04:42.377Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":2,"level":"info","message":"HTTP OUT","method":"POST","statusCode":401,"timestamp":"2025-09-16T12:04:42.379Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T12:04:52.483Z","url":"/api/v1/auth/register"}
+{"durationMs":28,"level":"info","message":"HTTP OUT","method":"POST","statusCode":409,"timestamp":"2025-09-16T12:04:52.510Z","url":"/api/v1/auth/register"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T12:05:35.275Z","url":"/api/v1/auth/login"}
+{"durationMs":149.6,"level":"info","message":"HTTP OUT","method":"POST","statusCode":200,"timestamp":"2025-09-16T12:05:35.424Z","url":"/api/v1/auth/login"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T12:06:07.612Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":2.2,"level":"info","message":"HTTP OUT","method":"POST","statusCode":401,"timestamp":"2025-09-16T12:06:07.614Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T12:06:15.163Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":2.2,"level":"info","message":"HTTP OUT","method":"POST","statusCode":401,"timestamp":"2025-09-16T12:06:15.165Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T12:06:23.477Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":70.5,"level":"info","message":"HTTP OUT","method":"POST","statusCode":201,"timestamp":"2025-09-16T12:06:23.547Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"PATCH","timestamp":"2025-09-16T12:06:40.147Z","url":"/api/v1/todo/update"}
+{"durationMs":37.7,"level":"info","message":"HTTP OUT","method":"PATCH","statusCode":200,"timestamp":"2025-09-16T12:06:40.185Z","url":"/api/v1/todo/update"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"DELETE","timestamp":"2025-09-16T12:06:52.368Z","url":"/api/v1/todo/delete"}
+{"durationMs":23.4,"level":"info","message":"HTTP OUT","method":"DELETE","statusCode":200,"timestamp":"2025-09-16T12:06:52.391Z","url":"/api/v1/todo/delete"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"GET","timestamp":"2025-09-16T12:06:55.930Z","url":"/api/v1/todo/getTodo"}
+{"durationMs":2.5,"level":"info","message":"HTTP OUT","method":"GET","statusCode":401,"timestamp":"2025-09-16T12:06:55.932Z","url":"/api/v1/todo/getTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"GET","timestamp":"2025-09-16T12:07:01.632Z","url":"/api/v1/todo/getTodo"}
+{"durationMs":6.5,"level":"info","message":"HTTP OUT","method":"GET","statusCode":200,"timestamp":"2025-09-16T12:07:01.639Z","url":"/api/v1/todo/getTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"GET","timestamp":"2025-09-16T12:07:16.570Z","url":"/api/v1/todo/getTodo"}
+{"durationMs":1.6,"level":"info","message":"HTTP OUT","method":"GET","statusCode":401,"timestamp":"2025-09-16T12:07:16.571Z","url":"/api/v1/todo/getTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T12:07:27.350Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":14.6,"level":"info","message":"HTTP OUT","method":"POST","statusCode":404,"timestamp":"2025-09-16T12:07:27.365Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T12:07:35.093Z","url":"/api/v1/auth/login"}
+{"durationMs":133.5,"level":"info","message":"HTTP OUT","method":"POST","statusCode":400,"timestamp":"2025-09-16T12:07:35.227Z","url":"/api/v1/auth/login"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-16T12:11:14.807Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-16T12:11:14.807Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-16T12:11:14.867Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-16T12:11:14.868Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-16T13:18:48.572Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-16T13:18:48.573Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-16T13:18:48.642Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-16T13:18:48.643Z"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:19:04.783Z","url":"/api/v1/auth/login"}
+{"code":"INVALID_PASS","level":"warn","message":"http.error","method":"POST","path":"/api/v1/auth/login","status":400,"timestamp":"2025-09-16T13:19:04.924Z"}
+{"durationMs":143,"level":"info","message":"HTTP OUT","method":"POST","statusCode":400,"timestamp":"2025-09-16T13:19:04.926Z","url":"/api/v1/auth/login"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:19:21.467Z","url":"/api/v1/auth/register"}
+{"code":"USER_EXISTS","level":"warn","message":"http.error","method":"POST","path":"/api/v1/auth/register","status":409,"timestamp":"2025-09-16T13:19:21.482Z"}
+{"durationMs":15.6,"level":"info","message":"HTTP OUT","method":"POST","statusCode":409,"timestamp":"2025-09-16T13:19:21.482Z","url":"/api/v1/auth/register"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-16T13:39:52.487Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-16T13:39:52.488Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-16T13:39:52.554Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-16T13:39:52.555Z"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:40:01.547Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":4.9,"level":"info","message":"HTTP OUT","method":"POST","statusCode":401,"timestamp":"2025-09-16T13:40:01.551Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:40:06.156Z","url":"/api/v1/auth/login"}
+{"durationMs":151.8,"level":"info","message":"HTTP OUT","method":"POST","statusCode":200,"timestamp":"2025-09-16T13:40:06.308Z","url":"/api/v1/auth/login"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:40:24.598Z","url":"/api/v1/todo/createTodo"}
+{"code":"USER_NOT_FOUND","level":"warn","message":"http.error","method":"POST","path":"/api/v1/todo/createTodo","status":404,"timestamp":"2025-09-16T13:40:24.613Z","userId":"5234901d-33e4-4e75-aeb8-099ef5f7b1f2"}
+{"durationMs":17,"level":"info","message":"HTTP OUT","method":"POST","statusCode":404,"timestamp":"2025-09-16T13:40:24.614Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:40:47.305Z","url":"/api/v1/todo/createTodo"}
+{"code":"USER_NOT_FOUND","level":"warn","message":"http.error","method":"POST","path":"/api/v1/todo/createTodo","status":404,"timestamp":"2025-09-16T13:40:47.319Z","userId":"5234901d-33e4-4e75-aeb8-099ef5f7b1f2"}
+{"durationMs":15.8,"level":"info","message":"HTTP OUT","method":"POST","statusCode":404,"timestamp":"2025-09-16T13:40:47.320Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:41:11.401Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":27.3,"level":"info","message":"HTTP OUT","method":"POST","statusCode":201,"timestamp":"2025-09-16T13:41:11.429Z","url":"/api/v1/todo/createTodo"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-16T13:56:07.221Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-16T13:56:07.221Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-16T13:56:07.288Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-16T13:56:07.288Z"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:56:16.644Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":2.2,"level":"info","message":"HTTP OUT","method":"POST","statusCode":401,"timestamp":"2025-09-16T13:56:16.646Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:56:25.834Z","url":"/api/v1/auth/login"}
+{"durationMs":150.3,"level":"info","message":"HTTP OUT","method":"POST","statusCode":200,"timestamp":"2025-09-16T13:56:25.984Z","url":"/api/v1/auth/login"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:56:35.260Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":3.8,"level":"info","message":"HTTP OUT","method":"POST","statusCode":500,"timestamp":"2025-09-16T13:56:35.263Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:57:10.176Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":33.9,"level":"info","message":"HTTP OUT","method":"POST","statusCode":201,"timestamp":"2025-09-16T13:57:10.210Z","url":"/api/v1/todo/createTodo"}
+{"code":"BAD_JSON","level":"warn","message":"http.error","method":"POST","path":"/api/v1/todo/createTodo","status":400,"timestamp":"2025-09-16T13:57:19.506Z"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:57:30.000Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":2.7,"level":"info","message":"HTTP OUT","method":"POST","statusCode":500,"timestamp":"2025-09-16T13:57:30.002Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T13:57:37.251Z","url":"/api/v1/todo/createTodo"}
+{"durationMs":21.6,"level":"info","message":"HTTP OUT","method":"POST","statusCode":201,"timestamp":"2025-09-16T13:57:37.272Z","url":"/api/v1/todo/createTodo"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"DELETE","timestamp":"2025-09-16T13:57:48.307Z","url":"/api/v1/todo/delete"}
+{"durationMs":24.2,"level":"info","message":"HTTP OUT","method":"DELETE","statusCode":200,"timestamp":"2025-09-16T13:57:48.331Z","url":"/api/v1/todo/delete"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-16T13:58:06.902Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-16T13:58:06.903Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-16T13:58:06.964Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-16T13:58:06.965Z"}
+{"level":"info","message":"Logger initialized","timestamp":"2025-09-16T14:07:07.729Z"}
+{"level":"info","message":"Boot: starting app","timestamp":"2025-09-16T14:07:07.729Z"}
+{"level":"info","message":"Boot: DB connected","timestamp":"2025-09-16T14:07:07.794Z"}
+{"level":"info","message":"Boot: HTTP server listening","port":3000,"timestamp":"2025-09-16T14:07:07.795Z"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T14:07:18.387Z","url":"/api/v1/otp/send-otp"}
+{"durationMs":18.7,"level":"info","message":"HTTP OUT","method":"POST","statusCode":400,"timestamp":"2025-09-16T14:07:18.405Z","url":"/api/v1/otp/send-otp"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T14:07:23.986Z","url":"/api/v1/otp/send-otp"}
+{"durationMs":2.1,"level":"info","message":"HTTP OUT","method":"POST","statusCode":400,"timestamp":"2025-09-16T14:07:23.988Z","url":"/api/v1/otp/send-otp"}
+{"ip":"::1","level":"info","message":"HTTP IN","method":"POST","timestamp":"2025-09-16T14:07:33.630Z","url":"/api/v1/otp/send-otp"}
+{"durationMs":18.9,"level":"info","message":"HTTP OUT","method":"POST","statusCode":400,"timestamp":"2025-09-16T14:07:33.648Z","url":"/api/v1/otp/send-otp"}

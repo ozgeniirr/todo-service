@@ -10,6 +10,7 @@ import externalRoutes from "./api/routes/external.route";
 import passport, { initialize } from "passport";*/
 import { ExpressProvider } from "./provider/expressProvider";
 import { requestLogger } from "@/middlewares/request.logger"
+import { ErrorHandler } from './middlewares/errorHandler';
 
 
 
@@ -24,11 +25,13 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(requestLogger)
 
+
   }
 
   public async loadServer(): Promise<void> {
     const expressProvider = ExpressProvider.fromExpress(this.app); 
     await expressProvider.mountRoutes();
+    this.app.use(ErrorHandler)
   }
 }
 

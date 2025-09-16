@@ -1,11 +1,11 @@
 import { TodoService } from "../services/Todo.service";
-import { Request,Response } from "express";
+import { Request,Response, NextFunction } from "express";
 
 
 export class TodoController{
   
   private todoService = new TodoService();
-  async createTodoController(req: Request, res: Response) {
+  async createTodoController(req: Request, res: Response, next:NextFunction) {
     const userId =
     (req as any)?.user?.userId ??
     (req as any)?.userId ??
@@ -30,16 +30,13 @@ export class TodoController{
       );
       return res.status(201).json({ message: "Yapılacak iş eklendi", todo });
     
-    }catch (error: any) {
-      if (error?.message === "USER_NOT_FOUND") {
-        return res.status(404).json({ message: "Kullanıcı bulunamadı." });
-      }
-      return res.status(500).json({ message: "Sunucu hatası" });
+    }catch (e) {
+      return next(e); 
     }
   }
 
 
-async updateCompletedController(req: Request, res: Response) {
+async updateCompletedController(req: Request, res: Response, next:NextFunction) {
     const authUser = (req as any)?.user; 
     const userId = authUser?.userId as string | undefined
     const emailFromToken = authUser?.email;  
@@ -71,20 +68,15 @@ async updateCompletedController(req: Request, res: Response) {
       );
 
       return res.status(200).json({ message: "Güncellendi", todo });
-    } catch (error: any) {
-      if (error?.message === "USER_NOT_FOUND") {
-        return res.status(404).json({ message: "Kullanıcı bulunamadı." });
-      }
-      if (error?.message === "TODO_NOT_FOUND") {
-        return res.status(404).json({ message: "Todo bulunamadı." });
-      }
-      return res.status(500).json({ message: "Sunucu hatası" });
+    }catch (e) {
+      return next(e); 
     }
+  
   }
 
 
 
-  async deleteTodo (req:Request, res:Response){
+  async deleteTodo (req:Request, res:Response, next:NextFunction){
     const authUser = (req as any)?.user; 
     const userId = authUser?.userId as string | undefined
     const title = String(req.body?.title ?? "").trim();
@@ -104,17 +96,13 @@ async updateCompletedController(req: Request, res: Response) {
       
       return res.status(200).json({message:"Görev silindi.", deletTodo})
 
-    }catch(error:any){
-
-      if(error.message==="TODO_NOT_FOUND"){
-        return res.status(400).json({message:"Böyle bir görev bulunamadı."})
-      }
-
-      return res.status(500).json({message:"Sunucu hatası."})
+    }catch (e) {
+      return next(e); 
     }
+  
   }
 
-  async getTodosCont(req:Request, res:Response){
+  async getTodosCont(req:Request, res:Response, next:NextFunction){
     const authUser = (req as any)?.user;
     const userId = authUser?.userId as string | undefined
     try{
@@ -124,9 +112,10 @@ async updateCompletedController(req: Request, res: Response) {
 
       const todoslist = await this.todoService.getTodos(userId)
       return res.status(200).json({message:"Görevleriniz: ", todoslist})
-    }catch(error:any){
-
-      return res.status(500).json({message:"Sunucu hatası."})
+    }catch (e) {
+      return next(e); 
+    
     }
-  }
+  
+  }  
 }  

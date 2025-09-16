@@ -6,6 +6,7 @@ import { randomUUID } from "crypto";
 import { ensureRedisConnection, getRedis } from "../../lib/redis";
 import { enqueueMail } from "@/jobs/queue";
 import { Role } from "@/types/role";
+import { AppError } from "@/errors/App.error";
 
 
 
@@ -16,7 +17,7 @@ export class AuthService{
 
         const existUser = await this.userRepo.findOneBy({email})
         if(existUser){
-            throw new Error("USER_EXISTS")
+            throw new AppError(409, "USER_EXISTS");
         }
 
         const hashedPassword = await bcrypt.hash(password, 11);
@@ -45,17 +46,17 @@ export class AuthService{
     async login(email: string, password: string,) {
         const user = await this.userRepo.findOneBy({ email });
         if (!user) {
-    
-            throw new Error("USER_NOT_FOUND");
+            
+            throw new AppError(404, "USER_NOT_FOUND");
   
         }
         if (!user.isVerified) {
-            throw new Error("NOT_ALLOWED");
+            throw new AppError(403, "NOT_ALLOWED");
         }
 
         const isPass = await bcrypt.compare(password, user.password);
         if (!isPass) {
-            throw new Error("INVALID_PASS");
+            throw new AppError(400, "INVALID_PASS");
         }
         const userId = String(user.id);
         const accessToken = signAccessToken(userId, { email: user.email, role: user.role as Role}); 
@@ -84,7 +85,7 @@ export class AuthService{
         
         })
         if(!user){
-            throw new Error("USER_NOT_FOUND")
+            throw new AppError(404, "USER_NOT_FOUND");
         }
 
         return user;

@@ -1,6 +1,7 @@
 import { AppDataSource } from "@/config/data-source";
 import { User } from "../entities/user/User.entity";
 import { Todo } from "../entities/todos/Todo.entity";
+import { AppError } from "@/errors/App.error";
 
 
 export class TodoService{
@@ -11,7 +12,7 @@ export class TodoService{
 
         const user = await this.userRepo.findOneBy({email})
         if(!user){
-            throw new Error("USER_NOT_FOUND")
+            throw new AppError(404, "USER_NOT_FOUND");
         }
         
         
@@ -40,12 +41,12 @@ export class TodoService{
         ? await this.userRepo.findOne({ where: { id: userId } })
         : await this.userRepo.findOne({ where: { email } });
 
-        if (!user) throw new Error("USER_NOT_FOUND");
+        if (!user) throw new AppError(404, "USER_NOT_FOUND");
         const todo = await this.todoRepo.findOne({
             where: { title, user: { id: user.id } }, 
             relations: { user: true },                
         });
-        if (!todo) throw new Error("TODO_NOT_FOUND");
+        if (!todo)throw new AppError(404, "TODO_NOT_FOUND");
         todo.completed = !!completed;
         await this.todoRepo.save(todo);
         return {
@@ -70,7 +71,7 @@ export class TodoService{
         });
 
         if(!todo){
-            throw new Error("TODO_NOT_FOUND")
+            throw new AppError(404, "TODO_NOT_FOUND");
         }
 
         await this.todoRepo.delete({id: todo.id})

@@ -12,10 +12,10 @@ logger.initialization()
 logger.client.info('Boot: starting app')
 
 const requiredVars = [
-  "MAIL_HOST",
-  "USER_MAIL_AUTH",
-  "USER_MAIL_PASSWORD",
-  "API_REDIS_URL",
+  "DB_HOST",
+  "DB_USERNAME",
+  "DB_PASSWORD",
+  "REDIS_HOST",
 ];
 
 const missing = requiredVars.filter((key) => !process.env[key]);

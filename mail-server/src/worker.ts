@@ -10,10 +10,10 @@ import { verifyTransport } from './lib/mailer'
 ;(async () => {
     await verifyTransport()    
     const requiredVars = [
-      "MAIL_HOST",
-      "USER_MAIL_AUTH",
-      "USER_MAIL_PASSWORD",
-      "API_REDIS_URL",
+      "SMTP_HOST",
+      "SMTP_USER",
+      "SMTP_PASS",
+      "REDIS_HOST",
     ];
 
     const missing = requiredVars.filter((key) => !process.env[key]);

@@ -4,6 +4,7 @@ import { logger } from "../../lib/logger";
 import { User } from "../entities/user/User.entity";
 import { AppDataSource } from "../../config/data-source";
 import { enqueueMail } from "../../jobs/queue";
+import { AppError } from "@/errors/App.error";
 
 
 export interface OtpServiceOptions {
@@ -66,14 +67,14 @@ export class OtpService {
     const key = this.keyFor(emailLower);
 
     const savedHash = await this.redis.get(key);
-    if (!savedHash) return { ok: false, reason: "EXPIRED_OR_NOT_FOUND" };
+    if (!savedHash)throw new AppError(400, "EXPIRED_OR_NOT_FOUND");;
 
     const incomingHash = this.hashOtp(providedOtp);
-    if (incomingHash !== savedHash) return { ok: false, reason: "INVALID" };
+    if (incomingHash !== savedHash)throw new AppError(400, "INVALID");
 
     const userRepo = AppDataSource.getRepository(User);
     const user = await userRepo.findOne({ where: { email: emailLower } });
-    if (!user) return { ok: false, reason: "USER_NOT_FOUND" };
+    if (!user)throw new AppError(404, "USER_NOT_FOUND");
 
     if (!user.isVerified) {
       user.isVerified = true;

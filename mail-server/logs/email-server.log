@@ -70,3 +70,15 @@
 2025-09-16T13:56:09.563Z [32minfo[39m: [32mMail worker started.[39m
 2025-09-16T14:07:09.774Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
 2025-09-16T14:07:09.776Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-16T14:43:43.145Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-16T14:43:43.149Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-17T07:13:09.159Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-17T07:13:09.166Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-17T07:14:15.226Z [32minfo[39m: [32mmail.sent[39m {"to":"canozge@gmail.com","messageId":"<c2b5d679-d978-7f20-2eba-5d5cc195a39f@gmail.com>","response":"250 2.0.0 OK  1758093255 5b1f17b1804b1-461391232e7sm23301025e9.6 - gsmtp","accepted":["canozge@gmail.com"],"rejected":[],"envelope":{"from":"canozge001@gmail.com","to":["canozge@gmail.com"]}}
+2025-09-17T07:14:15.230Z [32minfo[39m: [32mjob.completed[39m {"jobId":"48"}
+2025-09-17T07:14:18.517Z [32minfo[39m: [32mmail.sent[39m {"to":"canozge@gmail.com","messageId":"<7bb2ff9f-46ca-e322-7b02-ae74bbc13bd8@gmail.com>","response":"250 2.0.0 OK  1758093258 5b1f17b1804b1-46136daf992sm26314085e9.1 - gsmtp","accepted":["canozge@gmail.com"],"rejected":[],"envelope":{"from":"canozge001@gmail.com","to":["canozge@gmail.com"]}}
+2025-09-17T07:14:18.519Z [32minfo[39m: [32mjob.completed[39m {"jobId":"49"}
+2025-09-17T08:44:43.374Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-17T08:44:43.377Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-17T09:38:27.846Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-17T09:38:27.850Z [32minfo[39m: [32mMail worker started.[39m

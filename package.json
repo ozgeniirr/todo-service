@@ -66,6 +66,8 @@
 
     "hpp": "^0.2.3",
 
+    "http-status-codes": "^2.3.0",
+
     "i18n": "^0.15.1",
 
     "interface": "^1.2.1",
@@ -117,6 +119,8 @@
     "@types/express-session": "^1.18.2",
 
     "@types/hpp": "^0.2.6",
+
+    "@types/http-status-codes": "^1.2.0",
 
     "@types/i18n": "^0.13.12",
 

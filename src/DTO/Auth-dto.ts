@@ -4,11 +4,14 @@ import {
   IsNotEmpty,
   MinLength,
 } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { transformProperty } from '@/provider/transform.property';
 
 
 export class AuthRegisterDTO {
     @IsNotEmpty()
-    @IsEmail()
+	  @IsEmail()
+	  @Transform((property) => transformProperty(property.value, property.key))
     email!:string;
 
     @IsNotEmpty()

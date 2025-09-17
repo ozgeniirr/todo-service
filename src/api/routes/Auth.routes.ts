@@ -2,13 +2,10 @@ import { Router } from "express";
 import { AuthController } from "../controllers/Auth.controller";
 import { authenticateUser } from "../..//middlewares/authenticateUser";
 import { loadUserEmail } from "@/middlewares/loadUserByEmail";
-import Container from 'typedi'
-import { requireExistingUser } from "@/middlewares/requireExistingUser";
 import { RouterLabel, RouterPath } from "@/enums/router.enums";
 import { ValidationMiddleware } from "@/middlewares/validationmiddlewares";
 import { AuthLoginDTO, AuthRegisterDTO } from "@/DTO/Auth-dto";
 import { Routes } from "@/interfaces/routes.interface";
-import { authorizeRole } from "@/middlewares/authRole";
 
 
 export class AuthRoute implements Routes{

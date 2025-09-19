@@ -1,12 +1,13 @@
 export function transformProperty(value: any, propertyName?: string) {
-	if (typeof value !== 'string') {
-		return false
-	}
+  if (value == null) return value;
 
-	if (propertyName === 'email') {
-		return value.toLowerCase()
-	}
+  if (typeof value !== 'string') return value;
 
-	const lowerCased = value.toLocaleLowerCase('TR')
-	return lowerCased
+  const trimmed = value.trim();
+
+  if (propertyName === 'email') {
+    return trimmed.toLowerCase();
+  }
+
+  return trimmed.toLocaleLowerCase('tr-TR');
 }

@@ -47,8 +47,8 @@
 ---
 
 ## Gün 3 — RBAC (Role-Based Access Control)
-- [ ] JWT payload `role` içeriyor (token üretiminde).
-- [ ] **Guard**: `requireRole('ADMIN')` (401 vs 403 ayrımı net).
+- [x] JWT payload `role` içeriyor (token üretiminde).
+- [x] **Guard**: `requireRole('ADMIN')` (401 vs 403 ayrımı net).
 - [ ] **Admin seed**: başlangıç admin kullanıcısı (script/migration).
 
 **Kabul Kriteri:** `/admin/*` rotalarına yalnızca **ADMIN** erişebiliyor; diğerleri 403.

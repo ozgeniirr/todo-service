@@ -1,53 +1,71 @@
-import type { Request, Response, NextFunction } from "express";
+// ErrorHandler.ts
+import type { ErrorRequestHandler } from "express";
 import { AppError } from "@/errors/App.error";
 import { logger } from "@/lib/logger";
 
-export function ErrorHandler(err: any, req: Request, res: Response, _next: NextFunction) {
-  const cvErrors = Array.isArray(err?.errors)
-    ? err.errors.map((e: any) => ({ field: e.property, constraints: e.constraints }))
-    : undefined;
-
-
-  const logError = (status: number, code: string) => {
+export const ErrorHandler: ErrorRequestHandler = (err, req, res, _next) => {
+  const log = (status: number, code: string) => {
     const level = status >= 500 ? "error" : status >= 400 ? "warn" : "info";
-    const lg: any = (logger as any).client ?? logger; 
+    const lg: any = (logger as any).client ?? logger;
     lg[level]?.("http.error", {
       code,
       status,
       method: req.method,
       path: req.originalUrl,
       userId: (req as any)?.user?.userId,
-      details: err?.details,
+      details: (err as any)?.details,
     });
   };
 
-  if (err instanceof SyntaxError && "body" in err) {
-    logError(400, "BAD_JSON");
+  if (err instanceof SyntaxError && "body" in (err as any)) {
+    log(400, "BAD_JSON");
     return res.status(400).json({ success: false, code: "BAD_JSON", message: "Geçersiz JSON." });
   }
 
-  if (err?.code === "23505") {
-    logError(409, "CONFLICT");
+  if ((err as any)?.code === "23505") {
+    log(409, "CONFLICT");
     return res.status(409).json({
       success: false,
       code: "CONFLICT",
       message: "Kayıt benzersiz kısıtına takıldı",
-      meta: { detail: err?.detail },
+      meta: { detail: (err as any)?.detail },
     });
   }
 
   if (err instanceof AppError) {
-    logError(err.status, err.code);
-    return res.status(err.status).json({
+    log((err as any).status, (err as any).code);
+    return res.status((err as any).status).json({
       success: false,
-      code: err.code,
+      code: (err as any).code,
       message: err.message,
-      errors: err.details || cvErrors,
+      errors: (err as any).details,
     });
   }
 
-  if (Array.isArray(err)) {
-    logError(422, "VALIDATION_ERROR");
+if (typeof (err as any)?.statusCode === "number") {
+  const status = (err as any).statusCode as number;
+
+  const isValidation = status === 400 || status === 422;
+
+  const code = isValidation
+    ? "VALIDATION_ERROR"
+    : (typeof (err as any).code === "string" ? (err as any).code : "ERROR");
+
+  let message = (err as any).message;
+  if (!message || typeof message !== "string" || !message.trim()) {
+    message = isValidation ? "Geçersiz istek verisi" : "Hata";
+  }
+  log(status, code);
+  return res.status(status).json({
+    success: false,
+    code,
+    message,
+    errors: (err as any).details ?? (err as any).errors,
+  });
+}
+
+  if (Array.isArray(err) && err.every(e => e && typeof e === "object" && "property" in e)) {
+    log(422, "VALIDATION_ERROR");
     return res.status(422).json({
       success: false,
       code: "VALIDATION_ERROR",
@@ -56,10 +74,6 @@ export function ErrorHandler(err: any, req: Request, res: Response, _next: NextF
     });
   }
 
-  logError(500, "INTERNAL_SERVER_ERROR");
-  return res.status(500).json({
-    success: false,
-    code: "INTERNAL_SERVER_ERROR",
-    message: "Sunucu hatası.",
-  });
-}
+  log(500, "INTERNAL_SERVER_ERROR");
+  return res.status(500).json({ success: false, code: "INTERNAL_SERVER_ERROR", message: "Sunucu hatası." });
+};

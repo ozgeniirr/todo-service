@@ -24,8 +24,9 @@
 
     "worker:mail": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/workers/email.worker.ts",
 
-    "test": "vitest run"
+    "test": "vitest run",
 
+    "seed:admin": "ts-node -r tsconfig-paths/register -r dotenv/config src/scripts/seed-admin.ts"
   },
 
   "keywords": [],

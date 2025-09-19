@@ -11,6 +11,10 @@ import passport, { initialize } from "passport";*/
 import { ExpressProvider } from "./provider/expressProvider";
 import { requestLogger } from "@/middlewares/request.logger"
 import { ErrorHandler } from './middlewares/errorHandler';
+import i18n from 'i18n';
+import path from 'path';
+
+
 
 
 
@@ -32,8 +36,17 @@ class App {
     const expressProvider = ExpressProvider.fromExpress(this.app); 
     await expressProvider.mountRoutes();
     this.app.use(ErrorHandler)
-  }
-}
+    const localesDir = path.join(process.cwd(), (process.env.NODE_ENV === 'production' ? 'dist' : 'src'), 'locales');
+    i18n.configure({
+      locales: ['tr', 'en'],
+      defaultLocale: 'tr',
+      directory: localesDir,       
+      objectNotation: true,
+      updateFiles: false,
+});
+this.app.use(i18n.init);                 
+
+}}
 
 export default App;
 

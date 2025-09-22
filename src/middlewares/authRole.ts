@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { Role } from "@/types/role"; 
+import { Role } from "@/enums/types/role"; 
 
 export function authorizeRole(required: Role | Role[]) {
   const allowed = Array.isArray(required) ? required : [required];

@@ -1,5 +1,5 @@
 import jwt, { JwtPayload, SignOptions } from "jsonwebtoken";
-import { Role } from "@/types/role";
+import { Role } from "@/enums/types/role";
 
 const ACCESS_SECRET  = process.env.JWT_SECRET!;
 const REFRESH_SECRET = process.env.JWT_REFRESH_SECRET!;

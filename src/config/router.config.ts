@@ -1,11 +1,13 @@
 import { AuthRoute } from "@/api/routes/Auth.routes";
 import { OtpRoute } from "@/api/routes/Otp.routes";
 import { TodoRoute } from "@/api/routes/Todo.routes";
+import { UserRoute } from "@/api/routes/User.routes";
 import { Routes } from "@/interfaces/routes.interface";
 
 export const startRouterConfig: Routes[] = [
     AuthRoute.triggerUser(),
     OtpRoute.triggerUser(),
-    TodoRoute.triggerTodo()
+    TodoRoute.triggerTodo(),
+    UserRoute.triggerUser()
 
 ]

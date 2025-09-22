@@ -1,4 +1,3 @@
-
 import { Application } from 'express'
 import { startRouterConfig } from '@/config/router.config';
 

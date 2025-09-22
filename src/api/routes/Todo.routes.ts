@@ -4,7 +4,7 @@ import { RouterLabel, RouterPath } from "@/enums/router.enums";
 import { Routes } from "@/interfaces/routes.interface";
 import { authenticateUser } from "@/middlewares/authenticateUser";
 import { authorizeRole } from "@/middlewares/authRole";
-import { Role } from "@/types/role";
+import { Role } from "@/enums/types/role";
 import { ValidationMiddleware } from "@/middlewares/validationmiddlewares";
 import { CreateTodoDTO, DeleteTodoDTO, UpdateTodoDTO } from "@/DTO/todo-dto";
 

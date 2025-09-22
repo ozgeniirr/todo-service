@@ -1,7 +1,7 @@
-// ErrorHandler.ts
 import type { ErrorRequestHandler } from "express";
 import { AppError } from "@/errors/App.error";
 import { logger } from "@/lib/logger";
+import { ERR_TR } from "@/i18n/errors.tr";
 
 export const ErrorHandler: ErrorRequestHandler = (err, req, res, _next) => {
   const log = (status: number, code: string) => {
@@ -19,7 +19,7 @@ export const ErrorHandler: ErrorRequestHandler = (err, req, res, _next) => {
 
   if (err instanceof SyntaxError && "body" in (err as any)) {
     log(400, "BAD_JSON");
-    return res.status(400).json({ success: false, code: "BAD_JSON", message: "Geçersiz JSON." });
+    return res.status(400).json({ success: false, code: "BAD_JSON",message: ERR_TR["BAD_JSON"],    });
   }
 
   if ((err as any)?.code === "23505") {
@@ -27,18 +27,22 @@ export const ErrorHandler: ErrorRequestHandler = (err, req, res, _next) => {
     return res.status(409).json({
       success: false,
       code: "CONFLICT",
-      message: "Kayıt benzersiz kısıtına takıldı",
+      message: ERR_TR["CONFLICT"],
       meta: { detail: (err as any)?.detail },
     });
   }
-
+  
   if (err instanceof AppError) {
-    log((err as any).status, (err as any).code);
-    return res.status((err as any).status).json({
+    const status = (err as any).status;
+    const code   = (err as any).code as string;
+    const message = ERR_TR[code] || err.message || ERR_TR["INTERNAL_SERVER_ERROR"];
+    log(status, code);
+    return res.status(status).json({
       success: false,
-      code: (err as any).code,
-      message: err.message,
+      code,
+      message,
       errors: (err as any).details,
+    
     });
   }
 

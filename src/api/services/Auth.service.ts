@@ -5,7 +5,7 @@ import { signAccessToken, signRefreshToken } from "../../utils/jwt";
 import { randomUUID } from "crypto";
 import { ensureRedisConnection, getRedis } from "../../lib/redis";
 import { enqueueMail } from "@/jobs/queue";
-import { Role } from "@/types/role";
+import { Role } from "@/enums/types/role";
 import { AppError } from "@/errors/App.error";
 
 
@@ -17,7 +17,7 @@ export class AuthService{
 
         const existUser = await this.userRepo.findOneBy({email})
         if(existUser){
-            throw new AppError(409, "USER_EXISTS");
+            throw new AppError(409, "CONFLICT");
         }
 
         const hashedPassword = await bcrypt.hash(password, 11);

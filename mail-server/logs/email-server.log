@@ -102,3 +102,19 @@
 2025-09-18T08:42:17.282Z [32minfo[39m: [32mMail worker started.[39m
 2025-09-19T12:13:04.172Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
 2025-09-19T12:13:04.178Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-22T06:35:24.998Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-22T06:35:25.002Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-22T06:35:52.646Z [32minfo[39m: [32mmail.sent[39m {"to":"canozge001@gmail.com","messageId":"<3036b92d-2743-24b4-37ed-804b00c4a0a8@gmail.com>","response":"250 2.0.0 OK  1758522952 5b1f17b1804b1-46d1f3e1b03sm33527815e9.23 - gsmtp","accepted":["canozge001@gmail.com"],"rejected":[],"envelope":{"from":"canozge001@gmail.com","to":["canozge001@gmail.com"]}}
+2025-09-22T06:35:52.650Z [32minfo[39m: [32mjob.completed[39m {"jobId":"50"}
+2025-09-22T06:36:18.157Z [32minfo[39m: [32mmail.sent[39m {"to":"canozge001@gmail.com","messageId":"<3157fc9d-89a9-43aa-3c14-f2b76351282f@gmail.com>","response":"250 2.0.0 OK  1758522978 5b1f17b1804b1-46d51e5d863sm25726405e9.24 - gsmtp","accepted":["canozge001@gmail.com"],"rejected":[],"envelope":{"from":"canozge001@gmail.com","to":["canozge001@gmail.com"]}}
+2025-09-22T06:36:18.159Z [32minfo[39m: [32mjob.completed[39m {"jobId":"51"}
+2025-09-22T11:02:32.008Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-22T11:02:32.014Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-22T12:00:19.055Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-22T12:00:19.058Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-22T12:02:40.521Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-22T12:02:40.525Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-22T12:05:24.771Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-22T12:05:24.773Z [32minfo[39m: [32mMail worker started.[39m
+2025-09-22T12:13:30.949Z [32minfo[39m: [32msmtp.verify.ok[39m {"ok":true,"host":"smtp.gmail.com","port":"587"}
+2025-09-22T12:13:30.951Z [32minfo[39m: [32mMail worker started.[39m

@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { Todo } from "../todos/Todo.entity";
-import { Role } from "@/types/role";
+import { Role } from "@/enums/types/role";
 
 @Entity({ name: "users" })
 export class User {
@@ -14,7 +14,7 @@ export class User {
   password!: string;
 
   @Column({ type: "enum", enum: Role, default: Role.USER })
-  role!: string;
+  role!: Role;
 
   @Column({ length: 100, nullable: true })
   firstName?: string;

@@ -3,6 +3,7 @@ export enum RouterLabel {
 	Todo = 'todo',
 	Auth = 'auth',
 	User = 'user',
+	
 }
 
 export enum RouterPath {
@@ -15,4 +16,5 @@ export enum RouterPath {
 	UpdateTodo='update',
 	DeleteTodo='delete',
 	GetTodo='getTodo',
+	UpdateRole='updateRole',
 }

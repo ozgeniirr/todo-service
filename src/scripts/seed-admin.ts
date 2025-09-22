@@ -1,7 +1,7 @@
 import { AppDataSource } from "@/config/data-source";
 import dotenv from 'dotenv'
 import { User } from "@/api/entities/user/User.entity";
-import { Role } from "@/types/role";
+import { Role } from "@/enums/types/role";
 import { AppError } from "@/errors/App.error";
 import bcrypt  from "bcrypt";
 dotenv.config();

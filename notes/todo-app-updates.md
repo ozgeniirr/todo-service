@@ -49,7 +49,7 @@
 ## Gün 3 — RBAC (Role-Based Access Control)
 - [x] JWT payload `role` içeriyor (token üretiminde).
 - [x] **Guard**: `requireRole('ADMIN')` (401 vs 403 ayrımı net).
-- [ ] **Admin seed**: başlangıç admin kullanıcısı (script/migration).
+- [x] **Admin seed**: başlangıç admin kullanıcısı (script/migration).
 
 **Kabul Kriteri:** `/admin/*` rotalarına yalnızca **ADMIN** erişebiliyor; diğerleri 403.
 
@@ -57,9 +57,9 @@
 
 ## Gün 4 — Admin → Todo Yönetimi (CRUD)
 **Rotalar (sadece ADMIN):**
-- [ ] `POST /admin/todos` — hedef kullanıcıya görev ekle (input: userId/email + title + completed)
-- [ ] `PATCH /admin/todos/:id` — kısmi güncelle
-- [ ] `DELETE /admin/todos/:id`
+- [x] `POST /admin/todos` — hedef kullanıcıya görev ekle (input: userId/email + title + completed)
+- [x] `PATCH /admin/todos/:id` — kısmi güncelle
+- [x] `DELETE /admin/todos/:id`
 - [ ] `GET /admin/todos?userId=...&completed=...` — filtreli liste
 
 **Notlar**
